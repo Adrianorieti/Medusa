@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.stream.IntStream;
@@ -15,6 +16,7 @@ import java.util.stream.IntStream;
 import javax.xml.parsers.ParserConfigurationException;
 
 import com.dd.plist.PropertyListFormatException;
+import com.droolsObject.droolsObject;
 import com.metaDataParser.UnzipFile;
 import com.securityChecker.json_reader;
 import com.securityChecker.securityChecker;
@@ -26,7 +28,7 @@ public class App
 {
     static String binaryName;
     static HashMap<String, Boolean> flags = new HashMap<String, Boolean>();
-
+    static ArrayList<String> matches = new ArrayList<String>();
     
     public static void main( String[] args ) throws IOException, PropertyListFormatException, ParseException, ParserConfigurationException, SAXException, URISyntaxException 
     {
@@ -53,13 +55,17 @@ public class App
                 // securityChecker sc = new securityChecker(binaryName);
                 // System.out.println("Performing security checks");
                 // sc.performSecurityChecks();
-                json_reader tfr = new json_reader("flags.json");
+
+                // read json TO-DO read every json
+                json_reader jsr = new json_reader("matched.json");
+
                 try {
-                    tfr.read_json();
+                    jsr.read_json();
                 } catch (org.json.simple.parser.ParseException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
+                
+                droolsObject dro = new droolsObject(flags);
 
             }else{
                 // File is not ipa so we close the program
@@ -93,8 +99,6 @@ public class App
                 System.out.println("@Void Thesis project (if it doesn't work it's your fault)");
                 System.out.println("");
                 System.out.println("");
-
-
     }
 
     public String getBinaryName() {
@@ -109,6 +113,13 @@ public class App
     }
     public static void setFlags(HashMap<String, Boolean> flags) {
         App.flags = flags;
+    }
+    public static ArrayList<String> getMatches() {
+        return matches;
+    }
+
+    public static void setMatches(ArrayList<String> matches) {
+        App.matches = matches;
     }
 
     

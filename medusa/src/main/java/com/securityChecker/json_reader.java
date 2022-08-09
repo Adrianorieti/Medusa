@@ -62,10 +62,13 @@ public class json_reader {
             {
                 arr = (JSONArray) info_from_json;  
                 Object[] array = arr.toArray();
+                ArrayList<String> al = new ArrayList<String>();
                 for(int i=0;i < arr.size();i++)
                 {
-                    System.out.println(array[i]);
+                    al.add((String) array[i]);
+                    System.out.println(al.get(i));
                 }
+                App.setMatches(al);
 
             }else
             {
