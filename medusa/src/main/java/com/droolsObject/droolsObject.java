@@ -24,7 +24,7 @@ public class droolsObject {
         //Get the session named ksession-rule that is defined in kmodule.xml above.
         //Also by default the session returned is always stateful. 
         KieSession kSession = kContainer.newKieSession("ksession-rule");
-        System.out.println("Sono qui maranza bastardo");
+        // TO-DO create a drools excel table for behavior
     }
 
 }
