@@ -10,9 +10,9 @@ import org.kie.api.runtime.rule.FactHandle;
 public class droolsObject {
     
     HashMap<String, Boolean> flags = new HashMap<String, Boolean>();
-    ArrayList yara_matches;
+    ArrayList<String> yara_matches;
 
-    public droolsObject(HashMap flags, ArrayList yara_matches){
+    public droolsObject(HashMap<String, Boolean> flags, ArrayList<String> yara_matches){
         this.flags = flags;
         this.yara_matches = yara_matches;
     }
