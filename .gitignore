@@ -1,0 +1,4 @@
+result/
+*.jar
+*.json
+medusa/target/*
