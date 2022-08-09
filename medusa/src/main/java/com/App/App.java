@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.stream.IntStream;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -24,6 +25,9 @@ import org.xml.sax.SAXException;
 public class App 
 {
     static String binaryName;
+    static HashMap<String, Boolean> flags = new HashMap<String, Boolean>();
+
+    
     public static void main( String[] args ) throws IOException, PropertyListFormatException, ParseException, ParserConfigurationException, SAXException, URISyntaxException 
     {
         // Qui è come funzionerebbe se riuscissi a passare un argomento da cmdline
@@ -99,4 +103,13 @@ public class App
     public void setBinaryName(String binaryName) {
         App.binaryName = binaryName;
     }
+
+    public static HashMap<String, Boolean> getFlags() {
+        return flags;
+    }
+    public static void setFlags(HashMap<String, Boolean> flags) {
+        App.flags = flags;
+    }
+
+    
 }

@@ -5,8 +5,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
+
+import com.App.App;
+import com.droolsObject.droolsObject;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -48,14 +52,12 @@ public class json_reader {
      {
          // Extract info from json
          Set keys = seclist.keySet();
-         System.out.println(keys.getClass());
          Iterator<String> namesIterator = keys.iterator();
          JSONArray arr;
          JSONObject obj;
          // Check whether the info is a json Object or a Json Array
          while(namesIterator.hasNext()) {
             Object info_from_json = seclist.get(namesIterator.next());
-            System.out.println(info_from_json.getClass());
             if (info_from_json.getClass().toString().contains("JSONArray"))
             {
                 arr = (JSONArray) info_from_json;  
@@ -68,11 +70,15 @@ public class json_reader {
             }else
             {
                 obj = (JSONObject) info_from_json;
+                HashMap<String, Boolean> flags = new HashMap<String, Boolean>();
                 Object[] obj_arr = obj.keySet().toArray();
                 for(int i=0;i < obj.entrySet().size();i++)
                 {
-                    System.out.println(obj_arr[i] + " " + obj.get(obj_arr[i]));
+                    String flag = (String) obj_arr[i];
+                    Boolean verify = (Boolean) obj.get(obj_arr[i]);
+                    flags.put(flag, verify);
                 }
+                App.setFlags(flags);
             }
 
          }
