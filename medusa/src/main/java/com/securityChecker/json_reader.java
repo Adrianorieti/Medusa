@@ -4,6 +4,7 @@ package com.securityChecker;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -35,8 +36,6 @@ public class json_reader {
             array.add(obj);
             System.out.println();
             array.forEach( seclist -> parseArrayObject( (JSONObject) seclist ) );
-            //array.forEach( seclist -> System.out.println(seclist));
-
             
          } catch (FileNotFoundException e) {
              e.printStackTrace();
@@ -47,26 +46,35 @@ public class json_reader {
   
      private static void parseArrayObject(JSONObject seclist) 
      {
-         //Get employee object within list
-         System.out.println(seclist.keySet());
+         // Extract info from json
          Set keys = seclist.keySet();
+         System.out.println(keys.getClass());
          Iterator<String> namesIterator = keys.iterator();
+         JSONArray arr;
+         JSONObject obj;
+         // Check whether the info is a json Object or a Json Array
          while(namesIterator.hasNext()) {
-            JSONObject current = (JSONObject) seclist.get(namesIterator.next());
-            System.out.println("current: " + current.keySet());
-            System.out.println("current: " + current.keySet());
+            Object info_from_json = seclist.get(namesIterator.next());
+            System.out.println(info_from_json.getClass());
+            if (info_from_json.getClass().toString().contains("JSONArray"))
+            {
+                arr = (JSONArray) info_from_json;  
+                Object[] array = arr.toArray();
+                for(int i=0;i < arr.size();i++)
+                {
+                    System.out.println(array[i]);
+                }
+
+            }else
+            {
+                obj = (JSONObject) info_from_json;
+                Object[] obj_arr = obj.keySet().toArray();
+                for(int i=0;i < obj.entrySet().size();i++)
+                {
+                    System.out.println(obj_arr[i] + " " + obj.get(obj_arr[i]));
+                }
+            }
+
          }
-          
-        //  //Get employee first name
-        //  boolean canary = (boolean) flags.get("CANARY");    
-        //  System.out.println(canary);
-          
-        //  //Get employee last name
-        //  String lastName = (String) employeeObject.get("lastName");  
-        //  System.out.println(lastName);
-          
-        //  //Get employee website name
-        //  String website = (String) employeeObject.get("website");    
-        //  System.out.println(website);
      }
  }

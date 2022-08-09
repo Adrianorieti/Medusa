@@ -43,19 +43,19 @@ public class App
                 printTitle();
                 // File is ipa so we can extract the files
                 // and parse the metadata so finally create a metadata.json
-                UnzipFile.unzip(ipa);
+                // UnzipFile.unzip(ipa);
 
                 //Start security checks
-                securityChecker sc = new securityChecker(binaryName);
-                System.out.println("Performing security checks");
-                sc.performSecurityChecks();
-                // json_reader tfr = new json_reader("/home/void/Desktop/Tesi/python_scripts/test_file.json");
-                // try {
-                //     tfr.read_json();
-                // } catch (org.json.simple.parser.ParseException e) {
-                //     // TODO Auto-generated catch block
-                //     e.printStackTrace();
-                // }
+                // securityChecker sc = new securityChecker(binaryName);
+                // System.out.println("Performing security checks");
+                // sc.performSecurityChecks();
+                json_reader tfr = new json_reader("flags.json");
+                try {
+                    tfr.read_json();
+                } catch (org.json.simple.parser.ParseException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
 
             }else{
                 // File is not ipa so we close the program
