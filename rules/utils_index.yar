@@ -1,0 +1,7 @@
+include "./utils/base64.yar"
+include "./utils/suspicious_strings.yar"
+include "./utils/url.yar"
+include "./utils/virustotal.yar"
+include "./utils/magic.yar"
+include "./utils/domain.yar"
+include "./utils/ip.yar"
