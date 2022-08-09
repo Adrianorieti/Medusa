@@ -2,3 +2,4 @@ result/
 *.jar
 *.json
 medusa/target/*
+.vscode
