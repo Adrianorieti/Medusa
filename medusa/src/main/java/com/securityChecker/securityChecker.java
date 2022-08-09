@@ -36,10 +36,6 @@ public class securityChecker{
             String abs_py_path = currentDir + "/dist/checksec/checksec"; 
             String abs_rules_path = currentDir + "/rules";
             String abs_payload_path = currentDir + "/result/Payload";
-            System.out.println(abs_bin_path);
-            System.out.println(abs_py_path);
-            System.out.println(abs_rules_path);
-            System.out.println(abs_payload_path);
 
             // Run a shell command
             processBuilder.command("bash", "-c", abs_py_path + " " + abs_bin_path + " " + abs_rules_path + " " + abs_payload_path );

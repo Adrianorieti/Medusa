@@ -65,7 +65,8 @@ public class App
                     e.printStackTrace();
                 }
                 
-                droolsObject dro = new droolsObject(flags);
+                // create java object that is going to be passed to drools engine
+                droolsObject dro = new droolsObject(flags, matches);
 
             }else{
                 // File is not ipa so we close the program

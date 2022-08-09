@@ -68,6 +68,7 @@ public class json_reader {
                     al.add((String) array[i]);
                     System.out.println(al.get(i));
                 }
+                
                 App.setMatches(al);
 
             }else
@@ -81,6 +82,7 @@ public class json_reader {
                     Boolean verify = (Boolean) obj.get(obj_arr[i]);
                     flags.put(flag, verify);
                 }
+                
                 App.setFlags(flags);
             }
 
