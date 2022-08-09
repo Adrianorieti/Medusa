@@ -21,6 +21,8 @@ import com.metaDataParser.UnzipFile;
 import com.securityChecker.json_reader;
 import com.securityChecker.securityChecker;
 import com.securityChecker.json_reader;
+
+import org.apache.log4j.BasicConfigurator;
 import org.xml.sax.SAXException;
 
 
@@ -39,7 +41,8 @@ public class App
         File ipa = new File(args[0]);
                
         //System.out.print("main folder " + mainFolder + "\n");
-        
+        BasicConfigurator.configure();
+
         if (args[0] != null)
         {
             
@@ -67,7 +70,7 @@ public class App
                 
                 // create java object that is going to be passed to drools engine
                 droolsObject dro = new droolsObject(flags, matches);
-
+                dro.fireRules();
             }else{
                 // File is not ipa so we close the program
                 System.out.print("The file inserted is not a ipa packet \n");

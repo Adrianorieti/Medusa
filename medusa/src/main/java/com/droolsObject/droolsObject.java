@@ -18,4 +18,13 @@ public class droolsObject {
     }
 
 
+    public void fireRules(){
+        KieServices ks = KieServices.Factory.get();
+        KieContainer kContainer = ks.getKieClasspathContainer();
+        //Get the session named ksession-rule that is defined in kmodule.xml above.
+        //Also by default the session returned is always stateful. 
+        KieSession kSession = kContainer.newKieSession("ksession-rule");
+        System.out.println("Sono qui maranza bastardo");
+    }
+
 }
