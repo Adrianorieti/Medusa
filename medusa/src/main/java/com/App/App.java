@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
 import javax.xml.parsers.ParserConfigurationException;
 
 import com.dd.plist.PropertyListFormatException;
-import com.droolsObject.droolsObject;
+import com.droolsObject.droolsCore;
 import com.metaDataParser.UnzipFile;
 import com.securityChecker.json_reader;
 import com.securityChecker.securityChecker;
@@ -69,7 +69,7 @@ public class App
                 }
                 
                 // create java object that is going to be passed to drools engine
-                droolsObject dro = new droolsObject(flags, matches);
+                droolsCore dro = new droolsCore(flags, matches);
                 dro.fireRules();
             }else{
                 // File is not ipa so we close the program
