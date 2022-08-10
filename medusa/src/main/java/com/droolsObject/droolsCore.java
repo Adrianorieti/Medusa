@@ -25,16 +25,16 @@ public class droolsCore {
         //Also by default the session returned is always stateful. 
         KieSession kSession = kContainer.newKieSession("ksession-rule");
         Product product = new Product(flags, yara_matches, "gold" ,0);
-
         FactHandle fact1;
-
+        
         fact1 = kSession.insert(product);
         kSession.fireAllRules();
         System.out.println("");
         System.out.println("");
         System.out.println("");
         System.out.println("");
-
+        
+        System.out.println(product.getSingleFlag("CANARY"));
         System.out.println("The discount for the jewellery product " + product.getType() + " is " + product.getDiscount());
 
     }

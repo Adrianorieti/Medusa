@@ -60,7 +60,7 @@ public class App
                 // sc.performSecurityChecks();
 
                 // read json TO-DO read every json
-                json_reader jsr = new json_reader("matched.json");
+                json_reader jsr = new json_reader("flags.json");
 
                 try {
                     jsr.read_json();
