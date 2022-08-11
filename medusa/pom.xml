@@ -13,8 +13,8 @@
 
 <properties>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  <maven.compiler.source>18</maven.compiler.source>
-  <maven.compiler.target>18</maven.compiler.target>
+  <maven.compiler.source>1.8</maven.compiler.source>
+  <maven.compiler.target>1.8</maven.compiler.target>
   <drools-version>7.73.0.Final</drools-version>
   <slf4j-version>1.7.36</slf4j-version>
 </properties>
@@ -63,7 +63,6 @@
         <artifactId>drools-bom</artifactId>
         <type>pom</type>
         <version>${drools-version}</version>
-        <scope>import</scope>
       </dependency>
           <dependency>
         <groupId>org.drools</groupId>
@@ -86,11 +85,6 @@
 			<artifactId>drools-core</artifactId>
 			<version>${drools-version}</version>
 		</dependency>
-  <dependency>
-    <groupId>commons-io</groupId>
-    <artifactId>commons-io</artifactId>
-    <version>2.11.0</version>
-  </dependency>
   <dependency>
     <groupId>commons-io</groupId>
     <artifactId>commons-io</artifactId>
@@ -150,6 +144,7 @@
       <artifactId>maven-jar-plugin</artifactId>
       <version>3.2.2</version>
       <configuration>
+        <outputDirectory>../</outputDirectory>
         <archive>
           <manifest>
             <addClasspath>true</addClasspath>
@@ -170,18 +165,19 @@
           </goals>
           <configuration>
             <minimizeJar>true</minimizeJar>
+            <outputDirectory>../</outputDirectory>
           </configuration>
         </execution>
       </executions>
     </plugin>
-    <plugin>
+    <!-- <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>2.3.1</version>
+        <version>3.3.0</version>
         <configuration>
           <outputDirectory>../</outputDirectory>
         </configuration>
-      </plugin>
+      </plugin> -->
   </plugins>
 </build>
 </project>
