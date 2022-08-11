@@ -22,6 +22,7 @@ public class json_reader {
     String path;
     
     public json_reader(String path) {
+        //TO-DO check if file exists
         this.path = path;
     }
 

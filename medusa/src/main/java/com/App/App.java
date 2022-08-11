@@ -56,6 +56,7 @@ public class App
                 // sc.performSecurityChecks();
 
                 // read json TO-DO read every json
+                //TO-DO check if file exists and pass it
                 json_reader jsr = new json_reader("flags.json");
 
                 try {
