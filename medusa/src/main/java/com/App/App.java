@@ -34,10 +34,8 @@ public class App
     
     public static void main( String[] args ) throws IOException, PropertyListFormatException, ParseException, ParserConfigurationException, SAXException, URISyntaxException 
     {
-        // Qui è come funzionerebbe se riuscissi a passare un argomento da cmdline
-        // lo stò passando tramite il launch.json
-        //System.out.print("ipa file url " + args[0] + "\n"); 
-        // CAMBIARE E CONTROLLARE SE È ABSOLUTE PATH ALTRIMENTI TROVARLO
+
+        // Check if absolute path (?)
         File ipa = new File(args[0]);
                
         //System.out.print("main folder " + mainFolder + "\n");

@@ -50,10 +50,10 @@ public class securityChecker{
             System.out.println(abs_bin_path);
             System.out.println(abs_py_path);
             // Run a command
-            //processBuilder.command("cmd.exe", "/c", "dir C:\\Users\\mkyong");
+            //processBuilder.command("cmd.exe", "/c", "dir C:\\Users\\);
             
             // Run a bat file
-            //processBuilder.command("C:\\Users\\mkyong\\hello.bat");
+            //processBuilder.command("C:\\Users\\test.bat");
         }
             
         try {

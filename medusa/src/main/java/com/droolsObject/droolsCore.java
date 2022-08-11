@@ -6,7 +6,6 @@ import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.rule.FactHandle;
-import com.droolsObject.Product;
 
 public class droolsCore {
     
@@ -25,9 +24,8 @@ public class droolsCore {
         //Also by default the session returned is always stateful. 
         KieSession kSession = kContainer.newKieSession("ksession-rule");
         Product product = new Product(flags, yara_matches, "gold" ,0);
-        FactHandle fact1;
         
-        fact1 = kSession.insert(product);
+        FactHandle fact1 = kSession.insert(product);
         kSession.fireAllRules();
         System.out.println("");
         System.out.println("");
