@@ -35,10 +35,8 @@ public class App
     public static void main( String[] args ) throws IOException, PropertyListFormatException, ParseException, ParserConfigurationException, SAXException, URISyntaxException 
     {
 
-        // Check if absolute path (?)
         File ipa = new File(args[0]);
                
-        //System.out.print("main folder " + mainFolder + "\n");
         BasicConfigurator.configure();
 
         if (args[0] != null)
@@ -76,6 +74,7 @@ public class App
             }
         }
     }
+    
     // Check if file exists and is a ipa file
     private static boolean isFileIpa(String file) throws IOException {
 
