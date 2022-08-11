@@ -9,18 +9,18 @@ import org.kie.api.runtime.rule.FactHandle;
 
 public class droolsCore {
     
-     static HashMap<String, Boolean> flags = new HashMap<String, Boolean>();
-     static ArrayList<String> yara_matches;
+     private HashMap<String, Boolean> flags = new HashMap<String, Boolean>();
+     private ArrayList<String> yara_matches;
 
     public droolsCore(HashMap<String, Boolean> flags, ArrayList<String> yara_matches) {
-        droolsCore.flags = flags;
-        droolsCore.yara_matches = yara_matches;
+        this.flags = flags;
+        this.yara_matches = yara_matches;
     }
 
     /**
      * Fire all rules from drools decision table
      */
-    public static void fireRules(){
+    public void fireRules(){
         KieServices ks = KieServices.Factory.get();
         KieContainer kContainer = ks.getKieClasspathContainer();
         //Get the session named ksession-rule that is defined in kmodule.xml above.

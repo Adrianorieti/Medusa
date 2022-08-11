@@ -26,47 +26,48 @@ public class UnzipFile {
 
         // Extract all files in the result folder
         File destDir = new File("result"+ File.separator);
-        ZipInputStream zis = new ZipInputStream(new FileInputStream(ipa));
-        ZipEntry zipEntry = zis.getNextEntry();
-        HashMap<Number, ZipEntry> files = new HashMap<Number, ZipEntry>();
-        ArrayList<Integer> lengths = new ArrayList<Integer>();
+        try (ZipInputStream zis = new ZipInputStream(new FileInputStream(ipa))) {
+            ZipEntry zipEntry = zis.getNextEntry();
+            HashMap<Number, ZipEntry> files = new HashMap<Number, ZipEntry>();
+            ArrayList<Integer> lengths = new ArrayList<Integer>();
 
-        while (zipEntry != null) {
-            File newFile = new File(destDir, zipEntry.toString());
-            if(zipEntry.getName().contains("Info.plist")) // Save paths lengths for plist files
-            {
-                lengths.add(zipEntry.getName().length());
-                files.put(zipEntry.getName().length(), zipEntry);
+            while (zipEntry != null) {
+                File newFile = new File(destDir, zipEntry.toString());
+                if(zipEntry.getName().contains("Info.plist")) // Save paths lengths for plist files
+                {
+                    lengths.add(zipEntry.getName().length());
+                    files.put(zipEntry.getName().length(), zipEntry);
+                }
+               
+                if (zipEntry.isDirectory()) {
+                    if (!newFile.isDirectory() && !newFile.mkdirs()) {
+                        throw new IOException("Failed to create directory " + newFile);
+                    }
+                } else {
+                    // Fix for Windows-created archives
+                    File parent = newFile.getParentFile();
+                    if (!parent.isDirectory() && !parent.mkdirs()) {
+                        throw new IOException("Failed to create directory " + parent);
+                    }
+                    
+                    // Write file content
+                    FileOutputStream fos = new FileOutputStream(newFile);
+                    int len;
+                    while ((len = zis.read(buffer)) > 0) {
+                        fos.write(buffer, 0, len);
+                    }
+                    fos.close();
             }
-           
-            if (zipEntry.isDirectory()) {
-                if (!newFile.isDirectory() && !newFile.mkdirs()) {
-                    throw new IOException("Failed to create directory " + newFile);
-                }
-            } else {
-                // Fix for Windows-created archives
-                File parent = newFile.getParentFile();
-                if (!parent.isDirectory() && !parent.mkdirs()) {
-                    throw new IOException("Failed to create directory " + parent);
-                }
-                
-                // Write file content
-                FileOutputStream fos = new FileOutputStream(newFile);
-                int len;
-                while ((len = zis.read(buffer)) > 0) {
-                    fos.write(buffer, 0, len);
-                }
-                fos.close();
+            zipEntry = zis.getNextEntry();
+            
+   }
+   Collections.sort(lengths);
+   // Get the first plist file containing meta infos
+   File plistFile = new File("result" + File.separator, files.get(lengths.get(0)).toString());
+   // Begin metadata extraction
+   zis.closeEntry();
+   zis.close();
+   metaParser.parseFile(plistFile, ipa);
         }
-        zipEntry = zis.getNextEntry();
-        
-    }
-    Collections.sort(lengths);
-    // Get the first plist file containing meta infos
-    File plistFile = new File("result" + File.separator, files.get(lengths.get(0)).toString());
-    // Begin metadata extraction
-    zis.closeEntry();
-    zis.close();
-    metaParser.parseFile(plistFile, ipa);
 }
 }
