@@ -22,10 +22,6 @@ class checkCpu {
   }
 
   String parse_cafebabe(byte[] data) {
-//     StringBuilder sb = new StringBuilder(64);
-//     for(byte b:  data2)
-//         sb.append(String.format("%02x", b));
-//  System.out.println(sb.toString() + "");
 
     if (data[31] == (byte) 0x0c) {
         cpu = "arm";
@@ -50,6 +46,10 @@ class checkCpu {
 
   }
 
+  /**
+   * Check the binary cpu reading header
+   * @return
+   */
   String parse() {
     byte[] data;
 

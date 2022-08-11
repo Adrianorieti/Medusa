@@ -74,8 +74,13 @@ public class App
             }
         }
     }
-    
-    // Check if file exists and is a ipa file
+
+  /**
+   * Check if file exists and is an ipa packet
+   * @param file
+   * @return true if exists and is an ipa packet
+   * @throws IOException
+   */
     private static boolean isFileIpa(String file) throws IOException {
 
             byte[] bytes;
@@ -88,6 +93,9 @@ public class App
             
     }
 
+    /**
+     * Print my amazing title <3
+     */
     public static void printTitle()
     {
                 System.out.println("");

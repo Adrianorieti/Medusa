@@ -25,6 +25,10 @@ public class json_reader {
         this.path = path;
     }
 
+    /**
+     * Read jsons created from previous functions
+     * @throws ParseException
+     */
 	public void read_json() throws ParseException {
 
 		 //JSON parser object to parse read file
@@ -47,6 +51,10 @@ public class json_reader {
          }
      }
   
+     /**
+      * Extract info from json file 
+      * @param seclist
+      */
      private static void parseArrayObject(JSONObject seclist) 
      {
          // Extract info from json

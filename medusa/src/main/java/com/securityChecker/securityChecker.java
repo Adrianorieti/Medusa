@@ -19,7 +19,8 @@ public class securityChecker{
     }
     
     /**
-     * Check if the MACH-O binary has compilation flags
+     * Call python scripts to perform some security checks like compilation flags,
+     * trackers and yara rules matches
      * @throws IOException
      */
     public void performSecurityChecks() throws IOException{

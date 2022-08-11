@@ -28,7 +28,16 @@ import org.xml.sax.SAXException;
 
 public class metaParser {
     
-
+    /**
+     * Parse .plist file 
+     * @param plistFile
+     * @param ipa_path
+     * @throws IOException
+     * @throws PropertyListFormatException
+     * @throws ParseException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     */
     public static void parseFile(File plistFile, File ipa_path) throws IOException, PropertyListFormatException, ParseException, ParserConfigurationException, SAXException
     {
         
@@ -44,6 +53,13 @@ public class metaParser {
         }
     }
 
+    /**
+     * Populate json objects with extracted metadata informations
+     * @param hm
+     * @param ipa_path
+     * @throws IOException
+     * @throws NoSuchAlgorithmException
+     */
     public static void populateResult(HashMap<String,NSObject> hm, File ipa_path) throws IOException, NoSuchAlgorithmException
     {
 
@@ -52,10 +68,10 @@ public class metaParser {
         size_in_bytes = (size_in_bytes / 1000000);
         String size_in_mb = String.format("%.01f", size_in_bytes);
 
-        //md5
+        // Md5
         String checksumMD5 = DigestUtils.md5Hex(new FileInputStream(ipa_path));
         
-        //sha
+        // Sha
         String checksumSHA256 = DigestUtils.sha256Hex(new FileInputStream(ipa_path));
 
         // Create Json object for meta data results
@@ -92,10 +108,12 @@ public class metaParser {
         
         JSONObject permissions = new JSONObject();
         JSONObject urlschemes = new JSONObject();
+
         for (Object set : hm.entrySet()) 
         {
 
-            // Printing all elements of a Map
+            // Iterate trought app permissions
+            // They are stored as Dictionaries or Arrays
             if(set.toString().matches("^NS.*"))
             {
                     if(set.toString().contains("NSDictionary"))
@@ -127,6 +145,7 @@ public class metaParser {
         jsonObject.put("Permissions", permissions);
         String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonObject);
 
+        // Generate metadata.json in the result folder
         String metadata_path = "result" + File.separator + "metadata.json";
         FileWriter fileWriter = new FileWriter(metadata_path);
         PrintWriter printWriter = new PrintWriter(fileWriter);
@@ -135,9 +154,16 @@ public class metaParser {
         
 
         System.out.println("Metadata extracted and json file created at" + System.getProperty("user.dir") + File.separator + metadata_path );
-        // controllare poi se è possibile generare uno SBom per objective-c
+        // TO-DO Check if Sbom for Objective-C is possible
     }
 
+
+    /**
+     * Check if app is written in Objective-C or Swift checking imported libraries
+     * @param codesign
+     * @return app language type
+     * @throws IOException
+     */
     private static String determineAppType(String codesign) throws IOException
     {
         BufferedReader codeRes = new BufferedReader(new FileReader(codesign));

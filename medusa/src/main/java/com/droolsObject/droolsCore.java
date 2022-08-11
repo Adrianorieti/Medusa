@@ -13,10 +13,13 @@ public class droolsCore {
      static ArrayList<String> yara_matches;
 
     public droolsCore(HashMap<String, Boolean> flags, ArrayList<String> yara_matches) {
-        this.flags = flags;
-        this.yara_matches = yara_matches;
+        droolsCore.flags = flags;
+        droolsCore.yara_matches = yara_matches;
     }
 
+    /**
+     * Fire all rules from drools decision table
+     */
     public static void fireRules(){
         KieServices ks = KieServices.Factory.get();
         KieContainer kContainer = ks.getKieClasspathContainer();
@@ -34,7 +37,7 @@ public class droolsCore {
         
         System.out.println(product.getSingleFlag("CANARY"));
         System.out.println("The discount for the jewellery product " + product.getType() + " is " + product.getDiscount());
-
+        // TO-DO correctly populate javaobject and create complete drools decision table
     }
 
 }

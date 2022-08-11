@@ -23,14 +23,17 @@ public class UnzipFile {
     public static void unzip(File ipa) throws IOException, PropertyListFormatException, ParseException, ParserConfigurationException, SAXException, URISyntaxException {
         
         byte[] buffer = new byte[1024];
+
+        // Extract all files in the result folder
         File destDir = new File("result"+ File.separator);
         ZipInputStream zis = new ZipInputStream(new FileInputStream(ipa));
         ZipEntry zipEntry = zis.getNextEntry();
         HashMap<Number, ZipEntry> files = new HashMap<Number, ZipEntry>();
         ArrayList<Integer> lengths = new ArrayList<Integer>();
+
         while (zipEntry != null) {
             File newFile = new File(destDir, zipEntry.toString());
-            if(zipEntry.getName().contains("Info.plist"))
+            if(zipEntry.getName().contains("Info.plist")) // Save paths lengths for plist files
             {
                 lengths.add(zipEntry.getName().length());
                 files.put(zipEntry.getName().length(), zipEntry);
@@ -41,29 +44,27 @@ public class UnzipFile {
                     throw new IOException("Failed to create directory " + newFile);
                 }
             } else {
-                // fix for Windows-created archives
+                // Fix for Windows-created archives
                 File parent = newFile.getParentFile();
                 if (!parent.isDirectory() && !parent.mkdirs()) {
                     throw new IOException("Failed to create directory " + parent);
                 }
                 
-                // write file content
+                // Write file content
                 FileOutputStream fos = new FileOutputStream(newFile);
                 int len;
                 while ((len = zis.read(buffer)) > 0) {
                     fos.write(buffer, 0, len);
                 }
                 fos.close();
-                // cerco il primo Info.plist da cui estrarrò  i metadati
-               
         }
         zipEntry = zis.getNextEntry();
         
     }
     Collections.sort(lengths);
-    // get the first and most important file
+    // Get the first plist file containing meta infos
     File plistFile = new File("result" + File.separator, files.get(lengths.get(0)).toString());
-    // begin metadata extraction
+    // Begin metadata extraction
     zis.closeEntry();
     zis.close();
     metaParser.parseFile(plistFile, ipa);
