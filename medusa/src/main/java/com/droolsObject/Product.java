@@ -7,15 +7,14 @@ public class Product {
 	
 	private HashMap<String, Boolean> flags = new HashMap<String, Boolean>();
 	private ArrayList<String> yara_matches;
-	private String type;
-	private int discount;
+	private int hasMatches;
 
 	
-	public Product(HashMap<String, Boolean> flags, ArrayList<String> yara_matches, String type, int discount) {
+	public Product(HashMap<String, Boolean> flags, ArrayList<String> yara_matches) {
 		this.flags = flags;
 		this.yara_matches = yara_matches;
-		this.type = type;
-		this.discount = discount;
+		this.hasMatches = 0;
+
 	}
 
 	public HashMap<String, Boolean> getFlags() {
@@ -37,21 +36,17 @@ public class Product {
 	public void setYara_matches(ArrayList<String> yara_matches) {
 		this.yara_matches = yara_matches;
 	}
-
-	public String getType() {
-		return type;
+	
+	public Boolean getSingleMatch(String match)
+	{
+		return yara_matches.contains(match);
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public Integer getHasmatches() {
+		return hasMatches;
 	}
 
-	public int getDiscount() {
-		return discount;
+	public void setHasMatches(Integer hasFlags) {
+		this.hasMatches += hasFlags;
 	}
-
-	public void setDiscount(int discount) {
-		this.discount = discount;
-	}
-
 }
