@@ -72,7 +72,7 @@ public class securityChecker{
             }
 
             int exitVal = process.waitFor();
-
+       
             if (exitVal != 0) {
                 System.out.println("An error occurred");
             }

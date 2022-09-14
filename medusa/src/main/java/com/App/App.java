@@ -66,6 +66,8 @@ public class App
                 
                 // create java object that is going to be passed to drools engine
                 System.out.println("######## Executing drools on target");
+                System.out.println("");
+
                 droolsCore dro = new droolsCore(flags, matches);
                 dro.fireRules();
             }else{

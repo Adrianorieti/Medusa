@@ -39,7 +39,6 @@ public class droolObj {
 	
 	public Boolean getSingleMatch(String match)
 	{
-		System.out.println(yara_matches);
 		return yara_matches.contains(match);
 	}
 

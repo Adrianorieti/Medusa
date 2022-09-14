@@ -34,6 +34,11 @@ public class droolsCore {
         if (product.getHasmatches() == 0)
         {
             System.out.println("No matches encountered, the program succesfuly passed the tests! Congrats!");
+        }else
+        {
+            System.out.println("");
+            System.out.println("Please check the matched rules");
+
         }
         
     }
