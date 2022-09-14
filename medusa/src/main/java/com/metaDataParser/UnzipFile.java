@@ -22,6 +22,9 @@ public class UnzipFile {
 
     public static void unzip(File ipa) throws IOException, PropertyListFormatException, ParseException, ParserConfigurationException, SAXException, URISyntaxException {
         
+        System.out.println("######## Extracting metadata");
+        System.out.println("");
+
         byte[] buffer = new byte[1024];
 
         // Extract all files in the result folder

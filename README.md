@@ -10,3 +10,10 @@ This simple analyzer extract informations from IOS ipa packets before their rele
 - [Apache Maven](https://maven.apache.org/download.cgi) 3.6.3
  
 ## Requirements
+
+
+
+## TO-DO
+Delete debug printing
+Let user know at which point the program is at
+Check if Sbom for Objective-C is possible

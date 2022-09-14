@@ -154,7 +154,8 @@ public class metaParser {
         
 
         System.out.println("Metadata extracted and json file created at" + System.getProperty("user.dir") + File.separator + metadata_path );
-        // TO-DO Check if Sbom for Objective-C is possible
+        System.out.println("");
+
     }
 
 

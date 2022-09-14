@@ -25,13 +25,14 @@ public class securityChecker{
      */
     public void performSecurityChecks() throws IOException{
 
+        System.out.println("######## Executing python scripts");
+        System.out.println("");
         ProcessBuilder processBuilder = new ProcessBuilder();
 
         if(OS.contains("nix") || OS.contains("nux") || OS.contains("aix"))
         {
 
             // -- Linux --
-            System.out.println("sono qui");
             String currentDir = System.getProperty("user.dir");
             String abs_bin_path = currentDir + "/" + getBinaryName();
             String abs_py_path = currentDir + "/dist/checksec/checksec"; 
@@ -48,8 +49,7 @@ public class securityChecker{
             String currentDir = System.getProperty("user.dir");
             String abs_bin_path = currentDir + "\\" + getBinaryName();
             String abs_py_path = currentDir + "\\dist\\checksec\\checksec"; 
-            System.out.println(abs_bin_path);
-            System.out.println(abs_py_path);
+           
             // Run a command
             //processBuilder.command("cmd.exe", "/c", "dir C:\\Users\\);
             
@@ -68,15 +68,12 @@ public class securityChecker{
     
             String line;
             while ((line = reader.readLine()) != null) {
-                System.out.println(line);
                 output.append(line + "\n");
             }
-    
+
             int exitVal = process.waitFor();
-            if (exitVal == 0) {
-                System.out.println("Success!");
-                System.exit(0);
-            } else {
+
+            if (exitVal != 0) {
                 System.out.println("An error occurred");
             }
             } catch (IOException e) {

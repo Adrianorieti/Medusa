@@ -42,7 +42,6 @@ public class json_reader {
             
             JSONArray array = new JSONArray();
             array.add(obj);
-            System.out.println();
             array.forEach( seclist -> parseArrayObject( (JSONObject) seclist ) );
             
          } catch (FileNotFoundException e) {

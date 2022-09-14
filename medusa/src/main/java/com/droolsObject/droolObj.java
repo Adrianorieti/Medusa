@@ -3,18 +3,18 @@ package com.droolsObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Product {
+public class droolObj {
 	
 	private HashMap<String, Boolean> flags = new HashMap<String, Boolean>();
 	private ArrayList<String> yara_matches;
 	private int hasMatches;
 
 	
-	public Product(HashMap<String, Boolean> flags, ArrayList<String> yara_matches) {
+	public droolObj(HashMap<String, Boolean> flags, ArrayList<String> yara_matches) {
 		this.flags = flags;
 		this.yara_matches = yara_matches;
 		this.hasMatches = 0;
-
+		
 	}
 
 	public HashMap<String, Boolean> getFlags() {
@@ -39,6 +39,7 @@ public class Product {
 	
 	public Boolean getSingleMatch(String match)
 	{
+		System.out.println(yara_matches);
 		return yara_matches.contains(match);
 	}
 

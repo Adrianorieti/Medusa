@@ -27,17 +27,15 @@ public class droolsCore {
         //Get the session named ksession-rule that is defined in kmodule.xml above.
         //Also by default the session returned is always stateful. 
         KieSession kSession = kContainer.newKieSession("ksession-rule");
-        Product product = new Product(flags, yara_matches);
+        droolObj product = new droolObj(flags, yara_matches);
         FactHandle fact1 = kSession.insert(product);
         kSession.fireAllRules();
-        System.out.println("");
-        
+
         if (product.getHasmatches() == 0)
         {
             System.out.println("No matches encountered, the program succesfuly passed the tests! Congrats!");
         }
         
-        // TO-DO correctly populate javaobject and create complete drools decision table
     }
 
 }
