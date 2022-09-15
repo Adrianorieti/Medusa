@@ -46,9 +46,9 @@ public class securityChecker{
         {
 
             // -- Windows --
-            String currentDir = System.getProperty("user.dir");
-            String abs_bin_path = currentDir + "\\" + getBinaryName();
-            String abs_py_path = currentDir + "\\dist\\checksec\\checksec"; 
+            // String currentDir = System.getProperty("user.dir");
+            // String abs_bin_path = currentDir + "\\" + getBinaryName();
+            // String abs_py_path = currentDir + "\\dist\\checksec\\checksec"; 
            
             // Run a command
             //processBuilder.command("cmd.exe", "/c", "dir C:\\Users\\);

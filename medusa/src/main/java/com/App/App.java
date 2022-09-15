@@ -20,7 +20,6 @@ import com.droolsObject.droolsCore;
 import com.metaDataParser.UnzipFile;
 import com.securityChecker.json_reader;
 import com.securityChecker.securityChecker;
-import com.securityChecker.json_reader;
 
 import org.apache.log4j.BasicConfigurator;
 import org.xml.sax.SAXException;
@@ -53,15 +52,19 @@ public class App
                 //Start security checks
                  securityChecker sc = new securityChecker(binaryName);
                  sc.performSecurityChecks();
-                // read json TO-DO read every json
                 //TO-DO check if file exists and pass it
-                json_reader jsr = new json_reader("result" + File.separator + "flags.json");
-                json_reader jsR = new json_reader("result" + File.separator +"matched.json");
-                try {
-                    jsr.read_json();
-                    jsR.read_json();
-                } catch (org.json.simple.parser.ParseException e) {
-                    e.printStackTrace();
+                File f = new File("result" + File.separator + "flags.json");
+                File f2 = new File("result" + File.separator + "matched.json");
+
+                if(f.exists() && !f.isDirectory() && f2.exists() && !f2.isDirectory()) { 
+                    json_reader jsr = new json_reader("result" + File.separator + "flags.json");
+                    json_reader jsR = new json_reader("result" + File.separator +"matched.json");
+                    try {
+                        jsr.read_json();
+                        jsR.read_json();
+                    } catch (org.json.simple.parser.ParseException e) {
+                        e.printStackTrace();
+                    }
                 }
                 
                 // create java object that is going to be passed to drools engine
