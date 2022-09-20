@@ -17,6 +17,9 @@ def create_matches_json(matches):
     for y in x:
       mylist.append("{}".format(y))
 
+  # delete duplicates from list
+  mylist = list(dict.fromkeys(mylist))
+
   # create json object
   json_obj = {"matches": mylist}
   y = json.dumps(json_obj)

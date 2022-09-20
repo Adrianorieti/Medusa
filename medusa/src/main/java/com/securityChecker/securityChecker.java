@@ -25,7 +25,7 @@ public class securityChecker{
      */
     public void performSecurityChecks() throws IOException{
 
-        System.out.println("######## Executing python scripts");
+        System.out.println("######## Executing python scripts ( this could take a while)");
         System.out.println("");
         ProcessBuilder processBuilder = new ProcessBuilder();
 
