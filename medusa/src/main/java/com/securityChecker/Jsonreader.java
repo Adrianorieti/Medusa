@@ -58,20 +58,44 @@ public class Jsonreader {
       */
      private static void parseArrayObject(JSONObject seclist) 
      {
-        //System.out.println(seclist);
+        // Get flags array from json
         JSONObject flags = (JSONObject) seclist.get("flags");
-        System.out.println(flags);
+        // Get matches array from json
         JSONObject matches = (JSONObject) seclist.get("matched");
-        System.out.println(matches);
+       
+        // Deserialize flags
+        Set keys = flags.keySet();
+        Iterator<String> namesIterator = keys.iterator();
+        JSONObject obj;
+        HashMap<String, Boolean> flag_values = new HashMap<String, Boolean>();
+        while(namesIterator.hasNext()) {
+            Object info_from_json = flags.get(namesIterator.next());
+            obj = (JSONObject) info_from_json;
+            Object[] obj_arr = obj.keySet().toArray();
+            for(int i=0;i < obj.entrySet().size();i++)
+            {
+                String flag = (String) obj_arr[i];
+                Boolean verify = (Boolean) obj.get(obj_arr[i]);
+                flag_values.put(flag, verify);
+            }
+        }
+        // Populate App variable
+        App.setFlags(flag_values);
 
-        //  // Extract info from json
-        //  Set keys = seclist.keySet();
-        //  Iterator<String> namesIterator = keys.iterator();
-        //  JSONArray arr;
-        //  JSONObject obj;
-        //  // Check whether the info is a json Object or a Json Array
-        //  while(namesIterator.hasNext()) {
-        //     Object info_from_json = seclist.get(namesIterator.next());
+        // Deserialize matches 
+        keys = matches.keySet();
+        namesIterator = keys.iterator();
+        ArrayList<String> al = new ArrayList<String>();
+        while(namesIterator.hasNext()) {
+            JSONArray info_from_json = (JSONArray) matches.get(namesIterator.next());
+            for(int i=0;i < info_from_json.size();i++)
+            {
+            
+                al.add(info_from_json.get(i).toString());
+            }
+        }
+        System.out.println(al);
+        App.setMatches(al);
         //     if (info_from_json.getClass().toString().contains("JSONArray"))
         //     {
         //         arr = (JSONArray) info_from_json;  
