@@ -46,21 +46,18 @@ public class App
                 printTitle();
                 // File is ipa so we can extract the files
                 // and parse the metadata so finally create a metadata.json
-                 UnzipFile.unzip(ipa);
+                //  UnzipFile.unzip(ipa);
 
                 //Start security checks
-                 Securitychecker sc = new Securitychecker(binaryName);
-                 sc.performSecurityChecks();
+                //  Securitychecker sc = new Securitychecker(binaryName);
+                //  sc.performSecurityChecks();
                 //TO-DO check if file exists and pass it
-                File f = new File("result" + File.separator + "flags.json");
-                File f2 = new File("result" + File.separator + "matched.json");
+                File f = new File("result" + File.separator + "metadata.json");
 
-                if(f.exists() && !f.isDirectory() && f2.exists() && !f2.isDirectory()) { 
-                    Jsonreader jsr = new Jsonreader("result" + File.separator + "flags.json");
-                    Jsonreader jsR = new Jsonreader("result" + File.separator +"matched.json");
+                if(f.exists() && !f.isDirectory()) { 
+                    Jsonreader jsr = new Jsonreader("result" + File.separator + "metadata.json");
                     try {
                         jsr.readJson();
-                        jsR.readJson();
                     } catch (org.json.simple.parser.ParseException e) {
                         e.printStackTrace();
                     }
@@ -70,8 +67,8 @@ public class App
                 System.out.println("######## Executing drools on target");
                 System.out.println("");
 
-                Droolcore dro = new Droolcore(flags, matches);
-                dro.fireRules();
+                // Droolcore dro = new Droolcore(flags, matches);
+                // dro.fireRules();
             }else{
                 // File is not ipa so we close the program
                 System.out.print("The file inserted is not a ipa packet \n");

@@ -25,10 +25,13 @@ def create_matches_json(matches):
   y = json.dumps(json_obj)
   parsed = json.loads(y)
 
- # Write json to file
-  with open('matched.json', 'w') as f:
-      sys.stdout = f # Change the standard output to the file we created.
-      print(json.dumps(parsed, indent=4, sort_keys=True))
+  # add matches to metadata.json
+  with open(os.path.join('result', 'metadata.json'), 'r') as metadata:
+    json_decodedmetadata = json.load(metadata)
+    json_decodedmetadata['matched'] = parsed
+    with open(os.path.join('result', 'metadata.json'), 'w') as metadata:
+      sys.stdout = metadata # Change the standard output to the file we created.
+      print(json.dumps(json_decodedmetadata, indent=4))
       sys.stdout = original_stdout # Reset the standard output to its original value
 
 def create_flags_json(to_insert):
@@ -37,12 +40,16 @@ def create_flags_json(to_insert):
     json_obj = {"flags": to_insert}
     y = json.dumps(json_obj)
     parsed = json.loads(y)
-   
-    # Write json to file
-    with open('flags.json', 'w') as f:
-        sys.stdout = f # Change the standard output to the file we created.
-        print(json.dumps(parsed, indent=4, sort_keys=True))
+     # add matches to metadata.json
+    with open(os.path.join('result', 'metadata.json'), 'r') as metadata:
+      json_decodedmetadata = json.load(metadata)
+      json_decodedmetadata['flags'] = parsed
+      print(json_decodedmetadata)
+      with open(os.path.join('result', 'metadata.json'), 'w') as metadata:
+        sys.stdout = metadata # Change the standard output to the file we created.
+        print(json.dumps(json_decodedmetadata, indent=4))
         sys.stdout = original_stdout # Reset the standard output to its original value
+
 
 def main(binary_path,rules_path,payload_folder_path):
     # checksec on the binary

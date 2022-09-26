@@ -41,6 +41,7 @@ public class Jsonreader {
             Object obj  = jsonParser.parse(reader);
             
             JSONArray array = new JSONArray();
+            //System.out.println(obj);
             array.add(obj);
             array.forEach( seclist -> parseArrayObject( (JSONObject) seclist ) );
             
@@ -57,41 +58,48 @@ public class Jsonreader {
       */
      private static void parseArrayObject(JSONObject seclist) 
      {
-         // Extract info from json
-         Set keys = seclist.keySet();
-         Iterator<String> namesIterator = keys.iterator();
-         JSONArray arr;
-         JSONObject obj;
-         // Check whether the info is a json Object or a Json Array
-         while(namesIterator.hasNext()) {
-            Object info_from_json = seclist.get(namesIterator.next());
-            if (info_from_json.getClass().toString().contains("JSONArray"))
-            {
-                arr = (JSONArray) info_from_json;  
-                Object[] array = arr.toArray();
-                ArrayList<String> al = new ArrayList<String>();
-                for(int i=0;i < arr.size();i++)
-                {
-                    al.add((String) array[i]);
-                }
-                
-                App.setMatches(al);
+        //System.out.println(seclist);
+        JSONObject flags = (JSONObject) seclist.get("flags");
+        System.out.println(flags);
+        JSONObject matches = (JSONObject) seclist.get("matched");
+        System.out.println(matches);
 
-            }else
-            {
-                obj = (JSONObject) info_from_json;
-                HashMap<String, Boolean> flags = new HashMap<String, Boolean>();
-                Object[] obj_arr = obj.keySet().toArray();
-                for(int i=0;i < obj.entrySet().size();i++)
-                {
-                    String flag = (String) obj_arr[i];
-                    Boolean verify = (Boolean) obj.get(obj_arr[i]);
-                    flags.put(flag, verify);
-                }
+        //  // Extract info from json
+        //  Set keys = seclist.keySet();
+        //  Iterator<String> namesIterator = keys.iterator();
+        //  JSONArray arr;
+        //  JSONObject obj;
+        //  // Check whether the info is a json Object or a Json Array
+        //  while(namesIterator.hasNext()) {
+        //     Object info_from_json = seclist.get(namesIterator.next());
+        //     if (info_from_json.getClass().toString().contains("JSONArray"))
+        //     {
+        //         arr = (JSONArray) info_from_json;  
+        //         Object[] array = arr.toArray();
+        //         ArrayList<String> al = new ArrayList<String>();
+        //         for(int i=0;i < arr.size();i++)
+        //         {
+        //             al.add((String) array[i]);
+        //         }
+        //         System.out.println(al);
+        //         //App.setMatches(al);
 
-                App.setFlags(flags);
-            }
+        //     }else
+        //     {
+        //         obj = (JSONObject) info_from_json;
+        //         HashMap<String, Boolean> flags = new HashMap<String, Boolean>();
+        //         Object[] obj_arr = obj.keySet().toArray();
+        //         for(int i=0;i < obj.entrySet().size();i++)
+        //         {
+        //             String flag = (String) obj_arr[i];
+        //             Boolean verify = (Boolean) obj.get(obj_arr[i]);
+        //             flags.put(flag, verify);
+        //         }
+        //         System.out.println(flags);
 
-         }
+        //         //App.setFlags(flags);
+            //}
+
+         //}
      }
  }
