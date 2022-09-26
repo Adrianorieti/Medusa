@@ -16,7 +16,7 @@ public class Droolobj {
 		this.hasMatches = 0;
 		
 	}
-
+	
 	public Boolean getSingleFlag(String name){
 		return flags.get(name);
 	}

@@ -1,18 +1,10 @@
 import yara
 import os
-# only yara-python should be installed and not pip install yara
-# pip uninstall yara  for the win 
+# Only yara-python should be installed and not pip install yara
+# Pip uninstall yara  for the win 
 
-def mycallback(data):
-  print(data)
-  return yara.CALLBACK_CONTINUE
-
-# path è la cartella delle regole
 def fire_rules(rules_path, binary_name, payload_folder):
-    print(rules_path)
-    print(binary_name)
-    print(payload_folder)
-    # iterate over all rules and save them into a list
+    # Iterate over all rules and save them into a list
     rules_list = []
     matches_list = []
     matches_list_dup = []
@@ -34,7 +26,7 @@ def fire_rules(rules_path, binary_name, payload_folder):
                     if matches:
                         matches_list.append(matches)
           
-    # create another list without duplicates naive method  cuz i'm lazy          
+    # Create another list without duplicates naive method  cuz i'm lazy          
     for x in matches_list:
         if x not in matches_list_dup:
             matches_list_dup.append(x)

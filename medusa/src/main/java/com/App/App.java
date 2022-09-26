@@ -44,14 +44,17 @@ public class App
             {
                 
                 printTitle();
-                // File is ipa so we can extract the files
-                // and parse the metadata so finally create a metadata.json
-                //  UnzipFile.unzip(ipa);
+                /**
+                 * File is ipa so we can extract the files
+                 * and parse the metadata and finally create a metadata.json
+                 *  */ 
+                
+                UnzipFile.unzip(ipa);
 
-                //Start security checks
-                //  Securitychecker sc = new Securitychecker(binaryName);
-                //  sc.performSecurityChecks();
-                //TO-DO check if file exists and pass it
+                // Start security checks
+                Securitychecker sc = new Securitychecker(binaryName);
+                sc.performSecurityChecks();
+
                 File f = new File("result" + File.separator + "metadata.json");
 
                 if(f.exists() && !f.isDirectory()) { 
@@ -63,12 +66,12 @@ public class App
                     }
                 }
                 
-                // create java object that is going to be passed to drools engine
+                // Create a java object that is going to be passed to drools engine
                 System.out.println("######## Executing drools on target");
                 System.out.println("");
 
-                // Droolcore dro = new Droolcore(flags, matches);
-                // dro.fireRules();
+                Droolcore dro = new Droolcore(flags, matches);
+                dro.fireRules();
             }else{
                 // File is not ipa so we close the program
                 System.out.print("The file inserted is not a ipa packet \n");
