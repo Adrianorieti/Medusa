@@ -7,12 +7,12 @@ import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.rule.FactHandle;
 
-public class droolsCore {
+public class Droolcore {
     
      private HashMap<String, Boolean> flags = new HashMap<String, Boolean>();
      private ArrayList<String> yara_matches;
 
-    public droolsCore(HashMap<String, Boolean> flags, ArrayList<String> yara_matches) {
+    public Droolcore(HashMap<String, Boolean> flags, ArrayList<String> yara_matches) {
         this.flags = flags;
         this.yara_matches = yara_matches;
     }
@@ -28,7 +28,7 @@ public class droolsCore {
             // Get the session named ksession-rule that is defined in kmodule.xml above.
             // Also by default the session returned is always stateful. 
             KieSession kSession = kContainer.newKieSession("ksession-rule");
-            droolObj product = new droolObj(flags, yara_matches);
+            Droolobj product = new Droolobj(flags, yara_matches);
             FactHandle fact1 = kSession.insert(product);
             kSession.fireAllRules();
     

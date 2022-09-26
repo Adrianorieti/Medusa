@@ -25,7 +25,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.json.simple.JSONObject;
 import org.xml.sax.SAXException;
 
-public class metaParser {
+public class Metaparser {
     
     /**
      * Parse .plist file 
@@ -101,7 +101,7 @@ public class metaParser {
         String binaryName = "result" + File.separator + "Payload" + File.separator + hm.get("CFBundleName") + ".app" + File.separator + hm.get("CFBundleName");
         App app = new App();
         app.setBinaryName(binaryName);
-        checkCpu cpu = new checkCpu(binaryName);
+        Checkcpu cpu = new Checkcpu(binaryName);
         String arch = cpu.parse();
         jsonObject.put("Cpu", arch);
         

@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class securityChecker{
+public class Securitychecker{
 
     static String binaryName;
 
@@ -14,8 +14,8 @@ public class securityChecker{
 
     private static String OS = System.getProperty("os.name").toLowerCase();
 
-    public securityChecker(String binaryName) {
-        securityChecker.binaryName = binaryName;
+    public Securitychecker(String binaryName) {
+        Securitychecker.binaryName = binaryName;
     }
     
     /**

@@ -9,7 +9,7 @@ import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
-class checkCpu {
+class Checkcpu {
     
     Path path;
     String cpu = "";
@@ -17,7 +17,7 @@ class checkCpu {
     String full_cpu = " ";
 
 
-  checkCpu(String path) {
+  Checkcpu(String path) {
     this.path = Paths.get(path);
   }
 

@@ -70,7 +70,7 @@ public class UnzipFile {
    // Begin metadata extraction
    zis.closeEntry();
    zis.close();
-   metaParser.parseFile(plistFile, ipa);
+   Metaparser.parseFile(plistFile, ipa);
         }
 }
 }

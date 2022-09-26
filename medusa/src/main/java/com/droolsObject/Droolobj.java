@@ -3,14 +3,14 @@ package com.droolsObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class droolObj {
+public class Droolobj {
 	
 	private HashMap<String, Boolean> flags = new HashMap<String, Boolean>();
 	private ArrayList<String> yara_matches;
 	private int hasMatches;
 
 	
-	public droolObj(HashMap<String, Boolean> flags, ArrayList<String> yara_matches) {
+	public Droolobj(HashMap<String, Boolean> flags, ArrayList<String> yara_matches) {
 		this.flags = flags;
 		this.yara_matches = yara_matches;
 		this.hasMatches = 0;

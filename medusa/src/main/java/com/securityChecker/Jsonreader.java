@@ -16,12 +16,12 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class json_reader {
+public class Jsonreader {
 
     
     String path;
     
-    public json_reader(String path) {
+    public Jsonreader(String path) {
         //TO-DO check if file exists
         this.path = path;
     }
@@ -30,7 +30,7 @@ public class json_reader {
      * Read jsons created from previous functions
      * @throws ParseException
      */
-	public void read_json() throws ParseException {
+	public void readJson() throws ParseException {
 
 		 //JSON parser object to parse read file
          JSONParser jsonParser = new JSONParser();

@@ -15,10 +15,10 @@ import java.util.stream.IntStream;
 import javax.xml.parsers.ParserConfigurationException;
 
 import com.dd.plist.PropertyListFormatException;
-import com.droolsObject.droolsCore;
+import com.droolsObject.Droolcore;
 import com.metaDataParser.UnzipFile;
-import com.securityChecker.json_reader;
-import com.securityChecker.securityChecker;
+import com.securityChecker.Jsonreader;
+import com.securityChecker.Securitychecker;
 
 import org.apache.log4j.BasicConfigurator;
 import org.xml.sax.SAXException;
@@ -49,18 +49,18 @@ public class App
                  UnzipFile.unzip(ipa);
 
                 //Start security checks
-                 securityChecker sc = new securityChecker(binaryName);
+                 Securitychecker sc = new Securitychecker(binaryName);
                  sc.performSecurityChecks();
                 //TO-DO check if file exists and pass it
                 File f = new File("result" + File.separator + "flags.json");
                 File f2 = new File("result" + File.separator + "matched.json");
 
                 if(f.exists() && !f.isDirectory() && f2.exists() && !f2.isDirectory()) { 
-                    json_reader jsr = new json_reader("result" + File.separator + "flags.json");
-                    json_reader jsR = new json_reader("result" + File.separator +"matched.json");
+                    Jsonreader jsr = new Jsonreader("result" + File.separator + "flags.json");
+                    Jsonreader jsR = new Jsonreader("result" + File.separator +"matched.json");
                     try {
-                        jsr.read_json();
-                        jsR.read_json();
+                        jsr.readJson();
+                        jsR.readJson();
                     } catch (org.json.simple.parser.ParseException e) {
                         e.printStackTrace();
                     }
@@ -70,7 +70,7 @@ public class App
                 System.out.println("######## Executing drools on target");
                 System.out.println("");
 
-                droolsCore dro = new droolsCore(flags, matches);
+                Droolcore dro = new Droolcore(flags, matches);
                 dro.fireRules();
             }else{
                 // File is not ipa so we close the program
