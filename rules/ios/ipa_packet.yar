@@ -21,8 +21,14 @@ rule api_key
         $api_key = "[a-z0-9][a-z0-9]*-[a-z0-9][a-z0-9]*-[a-z0-9]"
         $b = "(Api-Key|ApiKey|Api_Key)" nocase ascii wide
         $key_token = ".*[A-Za-z0-9\\-\\]+(key|token)$" nocase ascii wide
+    condition:
+        any of them
+}
 
-
+rule deprecated_UIWEBVIEW
+{
+    strings:
+        $i = "UIWebView"  nocase ascii wide  
     condition:
         any of them
 }
@@ -38,7 +44,6 @@ rule vulnerable_bof_functions
         $f = "_random"  nocase ascii wide 
         $g = "_NSLOG"  nocase ascii wide 
         $h = "_malloc"   nocase ascii wide 
-        $i = "UIWebView"  nocase ascii wide 
 
     condition:
         any of them
@@ -48,22 +53,57 @@ rule admin_pass
 {
     strings:
         $a = "admin" nocase ascii wide
-        $b = "user" nocase ascii wide
-        $c = "(pass|password)" nocase ascii wide
-        $e = "^\\S*(passwords?|passwd|pass|pwd)_?(hash)?[0-9]*$" nocase ascii wide
         $ht_passwd = "^htpasswd Hash$" nocase ascii wide
-        $nmp_token = "^npm authToken$"
-        $pip_passwd = "^pip password$"
     condition:
         any of them
+}
+
+rule npm_pip
+{
+    strings:
+        $nmp_token = "^npm authToken$"
+        $pip_passwd = "^pip password$" = "string"
+    condition:
+        any of them
+}
+
+rule password
+{
+    strings:
+        $c = "(pass|password)" nocase ascii wide
+        $e = "^\\S*(passwords?|passwd|pass|pwd)_?(hash)?[0-9]*$" nocase ascii wide = "string"
+    condition:
+        any of them
+}
+
+rule user
+{
+    strings:
+        $b = "user" nocase ascii wide
+    condition:
+        any of them
+
 }
 
 rule aws_id
 {
     strings:
         $aws_id = "^(?=.*[A-Z])(?=.*[0-9])A(AG|CC|GP|ID|IP|KI|NP|NV|PK|RO|SC|SI)A[A-Z0-9]{16}$"
+    condition:
+        any of them
+}
+
+rule aws_key
+{
+    strings:
+                $aws_key = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[A-Za-z0-9\\+\\/]{40}$" = "string"
+    condition:
+        any of them
+}
+rule aws_token
+{
+    strings:
         $aws_token = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[A-Za-z0-9\\+\\/]{270,450}$"
-        $aws_key = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[A-Za-z0-9\\+\\/]{40}$"
     condition:
         any of them
 }
