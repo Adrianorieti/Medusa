@@ -62,7 +62,7 @@ rule npm_pip
 {
     strings:
         $nmp_token = "^npm authToken$"
-        $pip_passwd = "^pip password$" = "string"
+        $pip_passwd = "^pip password$" 
     condition:
         any of them
 }
@@ -71,7 +71,7 @@ rule password
 {
     strings:
         $c = "(pass|password)" nocase ascii wide
-        $e = "^\\S*(passwords?|passwd|pass|pwd)_?(hash)?[0-9]*$" nocase ascii wide = "string"
+        $e = "^\\S*(passwords?|passwd|pass|pwd)_?(hash)?[0-9]*$" nocase ascii wide 
     condition:
         any of them
 }
@@ -96,7 +96,7 @@ rule aws_id
 rule aws_key
 {
     strings:
-                $aws_key = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[A-Za-z0-9\\+\\/]{40}$" = "string"
+                $aws_key = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[A-Za-z0-9\\+\\/]{40}$" 
     condition:
         any of them
 }

@@ -15,5 +15,7 @@ This simple analyzer extract informations from IOS ipa packets before their rele
 
 Be sure Drools and Maven are installed
 
+## How to build
+
 ## TO-DO
 Check if Sbom for Objective-C is possible
